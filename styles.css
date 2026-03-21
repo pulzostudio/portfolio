@@ -1,0 +1,1465 @@
+/* Reset y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Esto evita que los paddings ensanchen los elementos */
+}
+
+html, body {
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
+    width: 100%;
+    max-width: 100vw;
+}
+
+body {
+    font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
+    line-height: 1.6;
+    color: #f40202;
+    background: linear-gradient(135deg, #f2f2f2 50%, #E2DFDF 70%);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+}
+ 
+/* Botones de color, idioma y experiencia */
+.color-buttons {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.color-group,
+.language-group {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.color-toggle,
+.language-toggle,
+.explore-toggle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 1.2em;
+    border: 2.5px solid #f40202;
+    background: white transparent;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0,7rem;
+}
+
+.color-toggle:hover,
+.language-toggle:hover,
+.explore-toggle:hover {
+    transform: scale(1.1);
+}
+
+.color-options,
+.language-options {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    border-radius: 1.2em;
+    background: white transparent;
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 999;
+}
+
+.color-group:focus-within .color-options {
+    display: flex;
+}
+
+.language-group:focus-within .language-options {
+    display: flex;
+}
+
+.color-btn,
+.language-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 0;
+}
+
+.language-btn {
+    width: auto;
+    height: auto;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #333;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.color-btn:hover,
+.language-btn:hover {
+    transform: scale(1.2);
+}
+
+.color-light {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+}
+
+.color-dark {
+    background-color: #1e1b1d;
+}
+
+.color-blue {
+    background-color: #0e0eaf;
+}
+
+/* Contenedor principal para scroll vertical */
+main {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    background-color: #f2f2f2;
+}
+
+/* Secciones */
+section {
+    min-height: 100vh;
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Hero section */
+.hero {
+    text-align: initial !important;
+    position: relative;
+    z-index: 2;
+}
+
+.location {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    color: #f40202;
+}
+
+.hero h1 {
+    font-size: 8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #f40202;
+}
+
+.hero a {
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+}
+
+.hero p {
+    font-size: 2rem;
+    max-width: 60rem;
+    margin-top: 2rem;
+    margin-left: 10rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    transition: color 0.3s;
+    line-height: 1.1;
+}
+
+.corazon {
+    position: absolute;
+    top: 35%; /* Ajusta según la altura de tu logo */
+    left: 75%;
+    transform: translate(-50%, -50%); /* Sin scale aquí */
+    
+    /* Usamos un ancho relativo. En desktop será el 25% del ancho de pantalla 
+       pero nunca más de 400px (ajusta este valor a tu gusto) */
+    width: clamp(200px, 25vw, 400px); 
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.3s ease; /* Para que el cambio de tamaño sea suave */
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .corazon {
+        top: 35%;
+        left: 100%;
+        width: 150px; /* Tamaño fijo pero controlado */
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .corazon {
+        top: 35%;
+        left: 85%;
+        width: 100px; /* Más pequeño para que no tape el contenido */
+    }
+}
+   
+
+.palabra-animada {
+    font-size: 2.2rem;
+    padding: 0.18em 1.2em;
+    width: fit-content;
+    border-radius: 1.8em;
+    margin: 1em 0 2em 0;
+    background: transparent;
+    border: 2.5px solid #f40202;
+    color: #f40202;
+    box-shadow: none;
+    transition: 0.3s, box-shadow 0.3s;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    will-change: opacity;
+    font-family: 'chantal', 'chantal', sans-serif;
+}
+@media (max-width: 600px) {
+    .palabra-animada {
+        display: block;
+    }
+}
+  
+.banner-container {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+    margin-top: 7rem;
+    display: block;
+    padding: 0;
+    overflow: hidden;
+}
+
+img, video, iframe {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+/* Scroll down button */
+.scroll-down {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #333;
+    padding: 1rem 2rem;
+    border: 2px solid #333;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.scroll-down:hover {
+    background-color: #333;
+    color: white;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+/* Case Studies */
+.case-studies {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.case-study {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease, margin-bottom 0.3s ease;
+    cursor: pointer;
+}
+
+.case-study:hover {
+    transform: translateX(20px);
+    background-color: #d0d0d0;
+}
+
+.case-study.carousel-active:hover {
+    transform: none;
+    background-color: #e0e0e0;
+}
+
+.case-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f40202;
+    margin-right: 2rem;
+    min-width: 60px;
+}
+
+.case-content {
+    flex: 1;
+}
+
+.case-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #f40202;
+}
+
+.case-tags {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.case-tags span {
+    background-color: #e0e0e0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #1e1b1d;
+}
+
+.case-study:last-child {
+    margin-bottom: 0;
+    padding-bottom: 5rem;
+}
+
+.video-manifiesto {
+    width: 100%;          /* El video ocupará el 80% del ancho de su contenedor */
+    max-width: 1920px;    /* No superará los 800px de ancho */
+    height: auto;        /* Mantiene la proporción original */
+    display: block;      /* Necesario para centrar con margin auto */
+    margin: 20px 0px;   /* 20px de margen arriba/abajo y centrado lateral */
+    border-radius: 10px; /* Opcional: esquinas redondeadas */
+  }
+  .contenedor-videomanifiesto {
+    width: 100%;
+    max-width: 1920px;    /* Tamaño máximo deseado */
+    margin: 0 auto;      /* Centrado */
+  }
+  
+  .video-manifiesto, iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Mantiene la relación de aspecto estándar */
+    height: auto;
+  }
+  
+
+/* Navegación inferior */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    color: #666;
+}
+
+.nav-links a.active {
+    color: #000;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Botones flotantes más pequeños y cerca del borde */
+    .color-buttons {
+        top: 1rem;
+        right: 1rem;
+        gap: 0.5rem;
+    }
+
+    .color-toggle,
+    .language-toggle,
+    .explore-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .color-btn {
+        width: 25px;
+        height: 25px;
+    }
+
+    /* Hero responsivo */
+    .hero {
+        align-items: center;
+        text-align: center !important;
+    }
+
+    .location {
+        font-size: 1rem;
+        top: 4.5rem;
+    }
+
+    .logo-link {
+        margin: 6rem auto 1.5rem auto;
+        justify-content: center;
+    }
+
+    .logo-pulzo {
+        max-width: min(180px, 50vw);
+    }
+
+    .hero-cellphone {
+        height: clamp(2rem, 6vw, 2.8rem);
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        margin: 0 auto;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        max-width: 90vw;
+        text-align: center;
+    }
+
+    #hero-text-before,
+    #hero-text-after {
+        font-size: 1.6rem;
+    }
+
+    .palabra-animada {
+        display: block;
+        font-size: 1.6rem;
+        padding: 0.3em 1.4em;
+        width: auto;
+        margin: 0.8em 0 0 0;
+    }
+    
+    section {
+        padding: 3rem 1rem;
+    }
+
+    .case-study {
+        padding: 1rem;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .case-number {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        min-width: 40px;
+    }
+
+    .case-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .case-tags {
+        gap: 0.5rem;
+    }
+
+    .case-tags span {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .scroll-down {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .contact-trigger {
+        font-size: clamp(2.5rem, 12vw, 6rem);
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        bottom: 1rem;
+    }
+
+    .footer-link,
+    .social-link {
+        font-size: 1rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    width: 100%;
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: #dbdbdb;
+}
+
+.contact-trigger {
+    font-size: clamp(3rem, 15vw, 12rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+    transform-origin: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 100%;
+}
+
+.footer-content {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.footer-link {
+    color: #f40202;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease;
+}
+
+.footer-link:hover {
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.social-link {
+    color: #f40202;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover {
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -60%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Carousel */
+.carousel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(224, 224, 224, 0.95);
+    z-index: 1000;
+    padding: 2rem 0;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    border-radius: 2%;
+}
+
+.carousel.active {
+    display: block;
+}
+
+.case-study.active {
+    margin-bottom: 400px;
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.carousel-slides-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.carousel-slide {
+    flex: 0 0 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    border-radius: 1.5%;
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.9);
+    transform-origin: center;
+    /* animation: slideLeft 5s linear infinite;  <-- ELIMINAR ESTA LÍNEA */
+}
+
+/* 2. Aplicamos la animación al contenedor que envuelve a TODOS los slides */
+.carousel-slides-wrapper {
+    display: flex;
+    gap: 1rem;
+    width: max-content; /* Obliga al contenedor a expandirse según el contenido */
+    animation: infiniteScroll 25s linear infinite; /* Ajusta los segundos a tu gusto */
+}
+
+/* 4. Pausa suave al pasar el mouse */
+.carousel-slides-wrapper:hover {
+    animation-play-state: paused;
+}
+
+.carousel-slide:hover {
+    transform: scale(1.05);
+    z-index: 10; /* Súbelo un poco para que la tarjeta sobresalga bien */
+}
+
+.carousel-slide:hover .slide-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+    border-bottom-left-radius: 1.5%;
+    border-bottom-right-radius: 1.5%;
+}
+
+/* Asegúrate de que apunte al WRAPPER, que es el que ahora tiene la animación */
+.carousel-slides-wrapper:hover {
+    animation-play-state: paused;
+}
+
+/* 3. Definimos el movimiento para el bloque completo */
+@keyframes infiniteScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Como duplicaste los elementos, al llegar al -50% 
+           el inicio de la segunda tanda está exactamente donde empezó la primera */
+        transform: translateX(calc(-50% - 0.5rem)); /* El 0.5rem compensa la mitad del gap */
+    }
+}
+
+/* Overlay para cuando el carrusel está activo */
+.carousel-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+}
+
+.carousel-overlay.active {
+    display: block;
+}
+
+/* Modal flotante */
+.floating-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 2000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(0px);
+}
+
+.floating-modal.active {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    border-radius: 16px;
+    position: relative;
+    overflow-y: auto;
+    transform: scale(0.9) translateY(30px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 2rem;
+    box-shadow: none;
+}
+
+.floating-modal.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    transform: rotate(0deg);
+}
+
+.close-modal:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modal-media {
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Módulos solo video: título + vídeo sin espacio innecesario */
+.modal-media.modal-video-only .modal-title {
+    margin-bottom: 0.5rem;
+}
+.modal-media.modal-video-only .modal-video {
+    margin-top: 0;
+}
+
+.modal-title {
+    color: #1e1b1d;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.modal-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0;
+    display: block !important;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+}
+
+.modal-video {
+    max-width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+/* NIVEA, DISHYPE, BALL: tamaño fijo 1080x1920 (vertical) */
+.modal-media.modal-video-portrait .modal-image,
+.modal-media.modal-video-portrait .modal-video {
+    width: auto;
+    max-width: min(1080px, 100%);
+    max-height: min(1920px, 85vh);
+    aspect-ratio: 1080 / 1920;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+.modal-media.modal-video-portrait .modal-video {
+    background: #000;
+}
+
+.modal-3d-viewer {
+    width: 100%;
+    height: 500px;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f8f8;
+    border-radius: 12px;
+}
+
+.modal-section h4 {
+    margin-bottom: 0.5rem;
+    color: #1e1b1d;
+}
+
+.modal-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #f40202;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.modal-link:hover {
+    text-decoration: underline;
+}
+
+.modal-images-container {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 1rem;
+    padding: 0;
+    max-height: 70vh;           /* Scroll individual por módulo */
+    overflow-y: auto;
+}
+
+.modal-images-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0;
+    display: block;
+    object-fit: contain;
+    margin: 0 auto;            /* Centrar horizontalmente */
+    padding: 0;
+}
+
+.modal-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+    padding: 1rem;
+    background: #f8f8f8;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+/* Responsive para el modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .modal-text {
+        font-size: 1rem;
+    }
+}
+
+/* Enlace del logo alineado a la izquierda con margen responsive */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 2vh 0 2vh clamp(2rem, 8vw, 10rem);
+    width: fit-content;
+    transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: top left;
+    align-self: flex-start;
+    position: relative;
+    /* Para permitir superposición absoluta */
+}
+
+.logo-pulzo {
+    max-width: min(1500px, 70vw);
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block; 
+}
+
+
+.logo-link.fixed-logo {
+    margin: 0 !important;
+    left: 2rem !important;
+    top: 2rem !important;
+    left: clamp(1rem, 3vw, 2rem) !important;
+    top: clamp(1rem, 3vw, 2rem) !important;
+    position: fixed !important;
+    z-index: 2001 !important;
+        width: 90px !important;
+    max-width: 90px !important;
+    min-width: 60px !important;
+    transition: all 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+#hero-text-before,
+#hero-text-after {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+
+/* === ESTILOS DEL BANNER PRE-FOOTER PULZO === */
+
+/* 1. Contenedor principal (El banner en sí) */
+.contenedor-newsletter {
+    background: url('Images/banner\ experiencia.png') no-repeat center center;
+    background-size: cover;
+    margin: auto;
+    padding: 4rem 1rem; /* Espaciado generoso arriba/abajo, un poco a los lados */
+    text-align: center; /* Centra todo el contenido */
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2vw; /* Línea redondeado */
+}
+
+/* Contenedor interno para limitar el ancho y centrar */
+.newsletter-content {
+    max-width: 600px; /* Ancho máximo para que el texto no se estire demasiado */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Espacio uniforme entre los elementos (logo, título, botón) */
+}
+
+/* 2. Estilo del Logo (Texto estilizado) */
+.newsletter-logo-text {
+    color: #E61E1A; /* Rojo Pulzo */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* O la fuente cursiva que uses */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Si usas imagen para el logo, usa este estilo: */
+.newsletter-logo {
+    max-width: 120px;
+    height: auto;
+}
+
+/* 3. Estilo del Título (VIVÍ LA EXPERIENCIA) */
+.newsletter-title {
+    color: white;
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Sans-serif fuerte y limpia */
+    font-size: 3rem; /* Tamaño grande y de impacto */
+    font-weight: 900; /* Extra bold */
+    line-height: 1.1; /* Interlineado ajustado */
+    margin: 0;
+    text-transform: uppercase; /* Todo en mayúsculas */
+}
+
+/* Ajuste para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .contenedor-newsletter {
+    width: 85%;
+    }
+    .newsletter-title {
+        font-size: 2.2rem; /* Reducimos el tamaño en móviles */
+    }
+}
+
+/* 4. Estilo de TU botón original (.btn-newsletter) */
+.contenedor-newsletter .btn-newsletter {
+    display: inline-block;
+    background-color: #E61E1A; /* Rojo Pulzo */
+    color: white;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1.2rem 3rem; /* Espaciado interno para hacerlo grande */
+    border-radius: 50px; /* Bordes completamente redondeados como en la imagen */
+    text-decoration: none; /* Quitamos el subrayado del enlace */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animaciones suaves */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(230, 30, 26, 0.3); /* Sombra sutil roja */
+}
+
+/* Efecto Hover (al pasar el mouse) */
+.contenedor-newsletter .btn-newsletter:hover {
+    background-color: #c41916; /* Rojo un poco más oscuro */
+    transform: translateY(-2px); /* Se levanta sutilmente */
+}
+
+/* Efecto Active (al hacer clic) */
+.contenedor-newsletter .btn-newsletter:active {
+    transform: translateY(1px); /* Se hunde sutilmente */
+}
+
+/* Módulo de exploración */
+.explore-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 3000;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.explore-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500vw;
+    height: 500vh;
+    min-width: 500vw;
+    min-height: 500vh;
+    transform: translate(-50%, -50%) translate3d(0, 0, 0);
+    background-image: url('Images/fondo corcho.jpg');
+    background-size: 100vw 100vh;
+    background-position: 0 0;
+    background-repeat: repeat;
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    z-index: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.explore-modal.active {
+    display: block;
+    opacity: 1;
+}
+
+.close-explore-modal {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: 2.5px solid #f40202;
+    color: #f40202;
+    font-size: 2rem;
+    z-index: 3001;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.2em;
+    transition: all 0.3s ease;
+    transform: rotate(0deg);
+}
+
+.close-explore-modal:hover {
+    background-color: rgba(244, 2, 2, 0.1);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.explore-canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+
+
+.explore-center-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.btn-experiencia {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    z-index: 10;        
+    cursor: pointer;
+    background:#000;
+    color:#fff;
+    padding:30px 64px;
+    border-radius:6px;
+    display:inline-block;
+    text-size-adjust: 20px;
+}
+
+.human-images {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(76vw, 400px);
+    height: min(76vw, 400px);
+    transform: translate(-50%, -50%);
+    border-radius: 5%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.human-images img {
+    position: absolute;
+    width: min(28vw, 110px);
+    height: min(28vw, 110px);
+    min-width: 96px;
+    min-height: 96px;
+    object-fit: cover;
+    border-radius: 5%;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.human-images img:nth-child(1) {
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.human-images img:nth-child(2) {
+    top: 50%;
+    left: 112%;
+    transform: translate(-50%, -50%);
+}
+
+.human-images img:nth-child(3) {
+    top: 110%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.human-images img:nth-child(4) {
+    top: 50%;
+    left: -20%;
+    transform: translate(-50%, -50%);
+}
+.human-images img:nth-child(5) {
+    top: 0%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+.human-images img:nth-child(6) {
+    top: 100%;
+    left: -0%;
+    transform: translate(-50%, -50%);
+}
+
+/* Responsive para el módulo de exploración */
+@media (max-width: 768px) {
+    .explore-toggle {
+        right: calc(2rem + 140px);
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .explore-center-image {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+}
+
+/* Newsletter */
+/* --- ESTILOS DEL FONDO (Ajustalo a tu gusto) --- */
+/* Para replicar el fondo rojo/negro de la imagen, podemos usar un degradado radial */
+/* --- ESTILOS DEL FONDO PRINCIPAL --- */
+#suscripcion {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('Images/fondo\ newsletter.png') no-repeat center center / cover;
+    overflow: hidden;
+    background-color: #000; /* Color de respaldo para que no se vea blanco si falla la foto */
+}
+
+.sparkles-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    /* 1. LOS AGRANDAMOS: Subimos de 40px a 80px (o lo que prefieras) */
+    width: 80px;  
+    height: 80px;
+    
+    background: url('Images/sparkle.png') no-repeat center / contain;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    
+    opacity: 0;
+    transform: scale(0);
+    
+    /* 2. MÁS RÁPIDO: Bajamos de 6s a 3s para que el ciclo sea más ágil */
+    animation: scalingSparkle 3s ease-in-out infinite;
+}
+
+/* --- ANIMACIÓN MÁS DINÁMICA --- */
+@keyframes scalingSparkle {
+    0%, 100% {
+        transform: scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+    50% {
+        /* 3. MÁS ESCALA: Que crezca un poco más para que destaque */
+        transform: scale(1.3) rotate(20deg); 
+        opacity: 0.9;
+    }
+}
+
+/* --- POSICIONES DE LOS 7 DESTELLOS --- */
+.s1 { top: 15%; left: 10%; animation-delay: 0s; }
+.s2 { top: 25%; left: 80%; animation-delay: 1s; }
+.s3 { top: 70%; left: 15%; animation-delay: 2s; }
+.s4 { top: 10%; left: 50%; animation-delay: 3s; }
+.s5 { top: 85%; left: 70%; animation-delay: 1.5s; }
+.s6 { top: 40%; left: 90%; animation-delay: 4s; }
+.s7 { top: 60%; left: 40%; animation-delay: 2.5s; }
+
+/* --- ANIMACIÓN DE ESCALA Y APARICIÓN --- */
+@keyframes scalingSparkle {
+    0%, 100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2); /* Crece un poquito más del original */
+        opacity: 0.8;          /* No llega a ser totalmente opaco para ser sutil */
+    }
+}
+
+/* --- ESTILOS DE LA TARJETA "GLASS" --- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05); /* Fondo muy semi-transparente */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Sombra suave */
+    
+    /* --- EL TRUCO DEL EFECTO GLASS --- */
+    backdrop-filter: blur(10px); /* Desenfoque del fondo */
+    -webkit-backdrop-filter: blur(10px); /* Para compatibilidad con Safari */
+    
+    /* --- BORDE SUTIL --- */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    
+    /* Centrado del contenido dentro de la tarjeta */
+    text-align: center;
+    color: #fff; /* Texto blanco para toda la tarjeta */
+}
+
+/* --- ESTILOS DE LA CABECERA DE LA TARJETA --- */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+/* --- ESTILOS DE LOS TÍTULOS Y SUBTÍTULOS --- */
+h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* --- ESTILOS DE LOS CAMPOS DE ENTRADA (INPUTS) --- */
+.mc-field-group {
+    margin-bottom: 20px;
+    text-align: left; /* Etiquetas a la izquierda */
+}
+
+#mc_embed_signup label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#mc_embed_signup input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 8px;
+    color: #fff; /* Texto blanco dentro del input */
+    font-family: inherit;
+    box-sizing: border-box; /* Importante para que el padding no ensanche */
+}
+
+#mc_embed_signup input::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Placeholder más tenue */
+}
+
+/* --- ESTILOS DEL BOTÓN DE SUSCRIPCIÓN --- */
+#mc-embedded-subscribe {
+    width: 100%;
+    padding: 15px;
+    background-color: #e62117; /* Rojo vibrante */
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#mc-embedded-subscribe:hover {
+    background-color: #a6120b; /* Rojo más oscuro al hover */
+}
+
+#mc-embedded-subscribe:active {
+    transform: scale(0.98); /* Efecto de clic */
+}
+
+/* --- ESTILOS DEL PIE DE PÁGINA DE LA TARJETA --- */
+.card-footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
