@@ -233,11 +233,16 @@ section {
     color: #f40202;
     box-shadow: none;
     transition: 0.3s, box-shadow 0.3s;
-    display: block;
+    display: inline-block;
     text-align: center;
     font-weight: bold;
     will-change: opacity;
     font-family: 'chantal', 'chantal', sans-serif;
+}
+@media (max-width: 600px) {
+    .palabra-animada {
+        display: inline-block;
+    }
 }
 
 .banner-container {
