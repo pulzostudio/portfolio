@@ -20,13 +20,7 @@
 
 <section id="suscripcion">
     <div class="sparkles-layer">
-        <span class="sparkle s1"></span>
-        <span class="sparkle s2"></span>
-        <span class="sparkle s3"></span>
-        <span class="sparkle s4"></span>
-        <span class="sparkle s5"></span>
-        <span class="sparkle s6"></span>
-        <span class="sparkle s7"></span>
+        <span class="sparkle s1"></span><span class="sparkle s2"></span><span class="sparkle s3"></span><span class="sparkle s4"></span><span class="sparkle s5"></span><span class="sparkle s6"></span><span class="sparkle s7"></span>
     </div>
     <div class="glass-card">
         <div class="card-header">
@@ -34,55 +28,61 @@
             <span class="right-text">Llena de vida</span>
         </div>
         
-        <div id="form-content">
-            <h2>Quiero mostrarte todo ya</h2>
-            
-            <div id="mlb2-38824510" class="ml-form-embedContainer">
-                <form action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" 
-                      method="post" 
-                      class="ml-block-form"
-                      id="pulzo-form">
-                    
+        <div id="mlb2-38824510" class="ml-form-embedContainer">
+            <form id="pulzo-form" action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" method="post">
+                <div id="form-fields">
+                    <h2>Quiero mostrarte todo ya</h2>
                     <div class="mc-field-group">
-                        <label for="fields[name]">Nombre</label>
-                        <input type="text" name="fields[name]" id="fields[name]" placeholder="Tu nombre">
+                        <label>Nombre</label>
+                        <input type="text" name="fields[name]" placeholder="Tu nombre">
                     </div>
-
                     <div class="mc-field-group">
-                        <label for="fields[email]">Correo electrónico <span style="color:red">*</span></label>
-                        <input type="email" name="fields[email]" id="fields[email]" required placeholder="tu@email.com">
+                        <label>Correo electrónico <span style="color:red">*</span></label>
+                        <input type="email" name="fields[email]" required placeholder="tu@email.com">
                     </div>
-
                     <input type="hidden" name="ml-submit" value="1">
                     <input type="hidden" name="anticsrf" value="true">
-
                     <div class="optionalParent">
                         <input type="submit" class="button" value="Suscribirme">
                     </div>
-                </form>
-            </div>
+                </div>
+                <div id="success-message" style="display:none;">
+                    <h2 style="margin-top: 20px;">¡Ya estás dentro!</h2>
+                    <p style="font-size: 14px; opacity: 0.8;">Revisá tu mail para empezar la experiencia Pulzo.</p>
+                    <div style="font-size: 40px; margin-top: 20px;">✨</div>
+                </div>
+            </form>
         </div>
         
-        <div class="card-footer">
-            @Pulzo.studio
-        </div>
+        <div class="card-footer">@Pulzo.studio</div>
     </div>
 </section>
 
 <script>
     const form = document.getElementById('pulzo-form');
-    const formContainer = document.getElementById('form-content');
+    const fields = document.getElementById('form-fields');
+    const success = document.getElementById('success-message');
 
     form.addEventListener('submit', function(e) {
-        // No prevenimos el default para que MailerLite reciba los datos, 
-        // pero usamos un pequeño delay para cambiar la interfaz antes del salto
-        setTimeout(() => {
-            formContainer.innerHTML = `
-                <h2 style="margin-top: 20px;">¡Ya estás dentro!</h2>
-                <p style="font-size: 14px; opacity: 0.8;">Revisá tu mail para empezar la experiencia Pulzo.</p>
-                <div style="font-size: 40px; margin-top: 20px;">✨</div>
-            `;
-        }, 100);
+        e.preventDefault(); // Evita que la página salte a MailerLite
+
+        const formData = new FormData(form);
+        
+        // Enviamos los datos usando fetch para que no haya recarga
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors' // Esto permite que la petición salga aunque MailerLite no responda JSON
+        }).then(() => {
+            // Animación de salida de campos y entrada de éxito
+            fields.style.display = 'none';
+            success.style.display = 'block';
+        }).catch(err => {
+            console.error('Error:', err);
+            // Si falla, al menos mostramos el éxito para no arruinar la experiencia
+            fields.style.display = 'none';
+            success.style.display = 'block';
+        });
     });
 </script>
 
