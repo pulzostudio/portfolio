@@ -162,3 +162,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 }); 
+
+// =========================
+// ✉️ NEWSLETTER (MailerLite)
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("customForm");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email")?.value;
+        const name = document.getElementById("name")?.value;
+
+        if (!email) return;
+
+        const interval = setInterval(() => {
+            const mlEmail = document.querySelector('.ml-embedded input[type="email"], .ml-embedded input[name*="email"]');
+            const mlName = document.querySelector('.ml-embedded input[type="text"], .ml-embedded input[name*="name"]');
+            const mlButton = document.querySelector('.ml-embedded button, .ml-embedded input[type="submit"]');
+
+            if (mlEmail && mlButton) {
+                mlEmail.value = email;
+
+                if (mlName && name) {
+                    mlName.value = name;
+                }
+
+                mlButton.click();
+                clearInterval(interval);
+
+                form.innerHTML = "<p style='text-align:center;'>Ya estás adentro 💌</p>";
+            }
+        }, 300);
+    });
+});
