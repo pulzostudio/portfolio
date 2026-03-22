@@ -34,30 +34,33 @@
             <span class="right-text">Llena de vida</span>
         </div>
         
-        <h2>Quiero mostrarte todo ya</h2>
-        
-        <div id="mlb2-38824510" class="ml-form-embedContainer">
-            <form action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" 
-                  method="post" 
-                  class="ml-block-form">
-                
-                <div class="mc-field-group">
-                    <label for="fields[name]">Nombre</label>
-                    <input type="text" name="fields[name]" id="fields[name]" placeholder="Tu nombre">
-                </div>
+        <div id="form-content">
+            <h2>Quiero mostrarte todo ya</h2>
+            
+            <div id="mlb2-38824510" class="ml-form-embedContainer">
+                <form action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" 
+                      method="post" 
+                      class="ml-block-form"
+                      id="pulzo-form">
+                    
+                    <div class="mc-field-group">
+                        <label for="fields[name]">Nombre</label>
+                        <input type="text" name="fields[name]" id="fields[name]" placeholder="Tu nombre">
+                    </div>
 
-                <div class="mc-field-group">
-                    <label for="fields[email]">Correo electrónico <span style="color:red">*</span></label>
-                    <input type="email" name="fields[email]" id="fields[email]" required placeholder="tu@email.com">
-                </div>
+                    <div class="mc-field-group">
+                        <label for="fields[email]">Correo electrónico <span style="color:red">*</span></label>
+                        <input type="email" name="fields[email]" id="fields[email]" required placeholder="tu@email.com">
+                    </div>
 
-                <input type="hidden" name="ml-submit" value="1">
-                <input type="hidden" name="anticsrf" value="true">
+                    <input type="hidden" name="ml-submit" value="1">
+                    <input type="hidden" name="anticsrf" value="true">
 
-                <div class="optionalParent">
-                    <input type="submit" class="button" value="Suscribirme">
-                </div>
-            </form>
+                    <div class="optionalParent">
+                        <input type="submit" class="button" value="Suscribirme">
+                    </div>
+                </form>
+            </div>
         </div>
         
         <div class="card-footer">
@@ -65,6 +68,23 @@
         </div>
     </div>
 </section>
+
+<script>
+    const form = document.getElementById('pulzo-form');
+    const formContainer = document.getElementById('form-content');
+
+    form.addEventListener('submit', function(e) {
+        // No prevenimos el default para que MailerLite reciba los datos, 
+        // pero usamos un pequeño delay para cambiar la interfaz antes del salto
+        setTimeout(() => {
+            formContainer.innerHTML = `
+                <h2 style="margin-top: 20px;">¡Ya estás dentro!</h2>
+                <p style="font-size: 14px; opacity: 0.8;">Revisá tu mail para empezar la experiencia Pulzo.</p>
+                <div style="font-size: 40px; margin-top: 20px;">✨</div>
+            `;
+        }, 100);
+    });
+</script>
 
 </body>
 </html>
