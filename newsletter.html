@@ -32,28 +32,49 @@
         
         <h2>Quiero mostrarte todo ya</h2>
         
-        <div id="mc_embed_signup">
-            <form action="https://site.us10.list-manage.com/subscribe/post?u=92a1478b9f7de244936eafe18&amp;id=9b64463703&amp;f_id=000d4fe4f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-                
-                <div class="mc-field-group">
-                    <label for="mce-FNAME">Nombre</label>
-                    <input type="text" name="FNAME" id="mce-FNAME" placeholder="Tu nombre">
-                </div>
-
-                <div class="mc-field-group">
-                    <label for="mce-EMAIL">Correo electrónico <span style="color:red">*</span></label>
-                    <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="tu@email.com">
-                </div>
-
-                <div class="optionalParent">
-                    <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Suscribirme">
-                </div>
-
-                <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                    <input type="text" name="b_92a1478b9f7de244936eafe18_9b64463703" tabindex="-1" value="">
-                </div>
-            </form>
+       <div id="mlb2-38824510" class="ml-form-embedContainer">
+    <form action="https://assets.mailerlite.com/jsonp/1360111/forms/38824510/subscribe" 
+          method="post" 
+          class="ml-block-form" 
+          id="mailerlite-form">
+        
+        <div class="mc-field-group">
+            <label for="fields[name]">Nombre</label>
+            <input type="text" name="fields[name]" id="fields[name]" placeholder="Tu nombre">
         </div>
+
+        <div class="mc-field-group">
+            <label for="fields[email]">Correo electrónico <span style="color:red">*</span></label>
+            <input type="email" name="fields[email]" id="fields[email]" required placeholder="tu@email.com">
+        </div>
+
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+
+        <div class="optionalParent">
+            <input type="submit" class="button" value="Suscribirme">
+        </div>
+
+        <div class="ml-form-successBody" style="display: none; margin-top: 15px; color: #fff; font-family: sans-serif;">
+            <div class="ml-form-successContent">
+                <h4>¡Listo! Revisa tu correo.</h4>
+                <p>Tu viaje visual con Pulzo acaba de empezar.</p>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function ml_webform_success_38824510() {
+        var form = document.getElementById('mailerlite-form');
+        var successMsg = document.querySelector('.ml-form-successBody');
+        if (form && successMsg) {
+            form.querySelector('.mc-field-group').parentElement.style.display = 'none'; // Oculta campos
+            successMsg.style.display = 'block'; // Muestra éxito
+        }
+    }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v2d784444648e02209d068525b68f309d" type="text/javascript"></script>
         
         <div class="card-footer">
             @Pulzo.studio
