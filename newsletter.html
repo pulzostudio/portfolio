@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="https://use.typekit.net/kub5fxs.css">
     
     <script>
-        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-        ml('account', '2212803');
-    </script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2212803');
+</script>
+    
     <link rel="icon" type="image/png" href="Images/favicon.png">
 </head>
 <body>
@@ -29,39 +30,48 @@
         <span class="right-text">Llena de vida</span>
     </div>
     
-    <div id="form-wrapper">
-        <h2>Quiero mostrarte todo ya</h2>
-        
-        <form action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" 
-              method="post" 
-              target="hidden_iframe" 
-              onsubmit="confirmarSuscripcion()">
-            
-            <div class="mc-field-group">
-                <label>Nombre</label>
-                <input type="text" name="fields[name]" placeholder="Tu nombre" required>
-            </div>
+    <div id="mlb2-38824510" class="ml-form-embedContainer ml-subscribe-form-38824510">
+        <div class="ml-form-align-center">
+            <div class="ml-form-embedWrapper embedForm">
+                
+                <div class="ml-form-successBody row-success" style="display: none">
+                    <div class="ml-form-successContent">
+                        <h2>¡Ya estás dentro! ✨</h2>
+                        <p>Revisá tu mail para empezar la experiencia Pulzo.</p>
+                    </div>
+                </div>
 
-            <div class="mc-field-group">
-                <label>Correo electrónico <span style="color:red">*</span></label>
-                <input type="email" name="fields[email]" required placeholder="tu@email.com">
-            </div>
+                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" data-code="" method="post" target="_blank">
+                    <h2>Quiero mostrarte todo ya</h2>
+                    
+                    <div class="ml-form-formContent">
+                        <div class="ml-form-fieldRow">
+                            <div class="ml-field-group ml-field-name">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" name="fields[name]" placeholder="Tu nombre" required>
+                            </div>
+                        </div>
+                        <div class="ml-form-fieldRow ml-last-item">
+                            <div class="ml-field-group ml-field-email">
+                                <label>Correo electrónico <span style="color:red">*</span></label>
+                                <input type="email" class="form-control" name="fields[email]" placeholder="tu@email.com" required>
+                            </div>
+                        </div>
+                    </div>
 
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
-
-            <div class="optionalParent">
-                <input type="submit" class="button" value="Suscribirme">
+                    <input type="hidden" name="ml-submit" value="1">
+                    <input type="hidden" name="anticsrf" value="true">
+                    
+                    <div class="ml-form-embedSubmit">
+                        <button type="submit" class="button primary">Suscribirme</button>
+                        <button disabled="disabled" style="display: none;" type="button" class="loading">
+                            <div class="ml-form-embedSubmitLoad"></div>
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-
-    <div id="success-msg" style="display:none; text-align:center;">
-        <h2 style="margin-top: 20px;">¡Ya estás dentro! ✨</h2>
-        <p>Revisá tu mail para empezar la experiencia Pulzo.</p>
-    </div>
-
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
     <div class="card-footer">@Pulzo.studio</div>
 </div>
