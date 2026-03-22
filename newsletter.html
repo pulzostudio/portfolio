@@ -23,60 +23,54 @@
         <span class="sparkle s1"></span><span class="sparkle s2"></span><span class="sparkle s3"></span>
         <span class="sparkle s4"></span><span class="sparkle s5"></span><span class="sparkle s6"></span><span class="sparkle s7"></span>
     </div>
-    <div class="glass-card">
-        <div class="card-header">
-            <span class="left-text">Crear</span>
-            <span class="right-text">Llena de vida</span>
-        </div>
-        
-        <div id="form-wrapper">
-            <h2>Quiero mostrarte todo ya</h2>
-            
-            <div class="ml-form-embed" 
-                 data-account="2212803:l2x8j8" 
-                 data-form="38824510:n3z5m1">
-                <form id="pulzo-form">
-                    <div class="mc-field-group">
-                        <label>Nombre</label>
-                        <input type="text" name="fields[name]" placeholder="Tu nombre" required>
-                    </div>
-
-                    <div class="mc-field-group">
-                        <label>Correo electrónico <span style="color:red">*</span></label>
-                        <input type="email" name="fields[email]" required placeholder="tu@email.com">
-                    </div>
-
-                    <div class="optionalParent">
-                        <button type="submit" class="button">Suscribirme</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="success-msg" style="display:none; text-align:center;">
-            <h2 style="margin-top: 20px;">¡Ya estás dentro!</h2>
-            <p style="font-size: 14px; opacity: 0.8;">Revisá tu mail para empezar la experiencia Pulzo.</p>
-            <div style="font-size: 40px; margin-top: 20px;">✨</div>
-        </div>
-
-        <div class="card-footer">@Pulzo.studio</div>
+<div class="glass-card">
+    <div class="card-header">
+        <span class="left-text">Crear</span>
+        <span class="right-text">Llena de vida</span>
     </div>
+    
+    <div id="form-container">
+        <h2>Quiero mostrarte todo ya</h2>
+        
+        <form action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" 
+              method="post" 
+              target="vacio" 
+              onsubmit="mostrarExito()">
+            
+            <div class="mc-field-group">
+                <label>Nombre</label>
+                <input type="text" name="fields[name]" placeholder="Tu nombre" required>
+            </div>
+
+            <div class="mc-field-group">
+                <label>Correo electrónico <span style="color:red">*</span></label>
+                <input type="email" name="fields[email]" required placeholder="tu@email.com">
+            </div>
+
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+
+            <div class="optionalParent">
+                <input type="submit" class="button" value="Suscribirme">
+            </div>
+        </form>
+    </div>
+
+    <div id="mensaje-exito" style="display:none;">
+        <h2 style="margin-top: 20px;">¡Ya estás dentro! ✨</h2>
+        <p style="font-size: 14px; opacity: 0.8;">Revisá tu mail para empezar la experiencia Pulzo.</p>
+    </div>
+
+    <iframe name="vacio" style="display:none;"></iframe>
+
+    <div class="card-footer">@Pulzo.studio</div>
+</div>
 </section>
 <script>
-    // Esta función la llama MailerLite automáticamente al suscribir con éxito
-    function ml_webform_success_38824510() {
-        document.getElementById('form-wrapper').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-    }
-
-    // Por si la función automática falla, forzamos el guardado de datos
-    document.getElementById('pulzo-form').addEventListener('submit', function(e) {
-        // Dejamos que el script de MailerLite en el <head> haga su magia
-        // Solo nos aseguramos de mostrar el mensaje de éxito después de un breve delay
-        setTimeout(function() {
-            ml_webform_success_38824510();
-        }, 1500);
-    });
+function mostrarExito() {
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('mensaje-exito').style.display = 'block';
+}
 </script>
 
 </body>
