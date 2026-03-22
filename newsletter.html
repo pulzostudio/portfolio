@@ -30,58 +30,50 @@
         <span class="right-text">Llena de vida</span>
     </div>
     
-    <div id="mlb2-38824510" class="ml-form-embedContainer ml-subscribe-form-38824510">
-        <div class="ml-form-align-center">
-            <div class="ml-form-embedWrapper embedForm">
-                
-                <div class="ml-form-successBody row-success" style="display: none">
-                    <div class="ml-form-successContent">
-                        <h2>¡Ya estás dentro! ✨</h2>
-                        <p>Revisá tu mail para empezar la experiencia Pulzo.</p>
-                    </div>
-                </div>
-
-                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" data-code="" method="post" target="_blank">
-                    <h2>Quiero mostrarte todo ya</h2>
-                    
-                    <div class="ml-form-formContent">
-                        <div class="ml-form-fieldRow">
-                            <div class="ml-field-group ml-field-name">
-                                <label>Nombre</label>
-                                <input type="text" class="form-control" name="fields[name]" placeholder="Tu nombre" required>
-                            </div>
-                        </div>
-                        <div class="ml-form-fieldRow ml-last-item">
-                            <div class="ml-field-group ml-field-email">
-                                <label>Correo electrónico <span style="color:red">*</span></label>
-                                <input type="email" class="form-control" name="fields[email]" placeholder="tu@email.com" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <input type="hidden" name="ml-submit" value="1">
-                    <input type="hidden" name="anticsrf" value="true">
-                    
-                    <div class="ml-form-embedSubmit">
-                        <button type="submit" class="button primary">Suscribirme</button>
-                        <button disabled="disabled" style="display: none;" type="button" class="loading">
-                            <div class="ml-form-embedSubmitLoad"></div>
-                        </button>
-                    </div>
-                </form>
+    <div id="form-container">
+        <h2>Quiero mostrarte todo ya</h2>
+        
+        <form action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe.js" 
+      method="post" 
+      target="vacio" 
+      onsubmit="mostrarExitoLocal()">
+            
+            <div class="mc-field-group">
+                <label>Nombre</label>
+                <input type="text" name="fields[name]" placeholder="Tu nombre" required>
             </div>
-        </div>
+
+            <div class="mc-field-group">
+                <label>Correo electrónico <span style="color:red">*</span></label>
+                <input type="email" name="fields[email]" required placeholder="tu@email.com">
+            </div>
+
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+
+            <div class="optionalParent">
+                <input type="submit" class="button" value="Suscribirme">
+            </div>
+        </form>
     </div>
+
+    <div id="mensaje-propio" style="display:none; text-align:center;">
+        <h2 style="margin-top: 20px;">¡Ya estás dentro! ✨</h2>
+        <p>Revisá tu mail para empezar la experiencia Pulzo.</p>
+    </div>
+
+    <iframe name="vacio" style="display:none;"></iframe>
 
     <div class="card-footer">@Pulzo.studio</div>
 </div>
+
 </section>
 <script>
-    function confirmarSuscripcion() {
-        // Cambiamos la interfaz inmediatamente para que el usuario no espere
-        document.getElementById('form-wrapper').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-    }
+function mostrarExitoLocal() {
+    // Esto se ejecuta apenas el usuario hace clic, sin esperar a MailerLite
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('mensaje-propio').style.display = 'block';
+}
 </script>
 </body>
 </html>
