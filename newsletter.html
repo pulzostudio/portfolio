@@ -29,13 +29,13 @@
         <span class="right-text">Llena de vida</span>
     </div>
     
-    <div id="form-container">
+    <div id="form-wrapper">
         <h2>Quiero mostrarte todo ya</h2>
         
         <form action="https://assets.mailerlite.com/jsonp/2212803/forms/38824510/subscribe" 
               method="post" 
-              target="vacio" 
-              onsubmit="mostrarExito()">
+              target="hidden_iframe" 
+              onsubmit="confirmarSuscripcion()">
             
             <div class="mc-field-group">
                 <label>Nombre</label>
@@ -56,22 +56,22 @@
         </form>
     </div>
 
-    <div id="mensaje-exito" style="display:none;">
+    <div id="success-msg" style="display:none; text-align:center;">
         <h2 style="margin-top: 20px;">¡Ya estás dentro! ✨</h2>
-        <p style="font-size: 14px; opacity: 0.8;">Revisá tu mail para empezar la experiencia Pulzo.</p>
+        <p>Revisá tu mail para empezar la experiencia Pulzo.</p>
     </div>
 
-    <iframe name="vacio" style="display:none;"></iframe>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
     <div class="card-footer">@Pulzo.studio</div>
 </div>
 </section>
 <script>
-function mostrarExito() {
-    document.getElementById('form-container').style.display = 'none';
-    document.getElementById('mensaje-exito').style.display = 'block';
-}
+    function confirmarSuscripcion() {
+        // Cambiamos la interfaz inmediatamente para que el usuario no espere
+        document.getElementById('form-wrapper').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+    }
 </script>
-
 </body>
 </html>
