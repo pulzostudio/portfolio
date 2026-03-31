@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 mlButton.click();
                 clearInterval(interval);
 
-                form.innerHTML = "<p style='text-align:center;'>Ya estás adentro 💌</p>";
+                form.innerHTML = "<p style='text-align:center;'>Ya estás adentro 💌 Buscá en tu mail - quizá en spam:´(</p>";
             }
         }, 300);
     });
